@@ -117,7 +117,7 @@ Available genres:
 ## Running Tests
 
 ```bash
-pytest
+python -m pytest tests
 ```
 
 ## Error Handling
