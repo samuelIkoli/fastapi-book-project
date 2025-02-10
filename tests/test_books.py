@@ -10,7 +10,8 @@ def test_get_all_books():
 def test_get_single_book():
     response = client.get("/books/1")
     assert response.status_code == 200
-    data = response.json()
+    print(response.json()) 
+    data = response.json()['1']
     assert data["title"] == "The Hobbit"
     assert data["author"] == "J.R.R. Tolkien"
 
