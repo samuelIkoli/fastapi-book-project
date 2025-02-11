@@ -52,15 +52,6 @@ jobs:
             cd /fastapi-book-project
             git pull origin main
             source venv/bin/activate
-            pip install -r requirements.txt
-            if tmux has-session -t fastapi 2>/dev/null; then
-            echo "✅ Tmux session 'fastapi' exists. Reloading FastAPI..."
-            tmux send-keys -t fastapi C-c  # Stop the existing FastAPI process
-            sleep 2  # Give it a moment to fully exit
-            tmux send-keys -t fastapi "source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4" C-m
-            else
-            echo "🚀 Tmux session 'fastapi' not found. Creating a new session..."
-            tmux new -d -s fastapi "bash -c 'cd /fastapi-book-project && source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4'"
-            fi
-            sudo systemctl restart nginx
+            tmux has-session -t fastapi 2>/dev/null && tmux send-keys -t fastapi C-c || tmux new -d -s fastapi
+            tmux send-keys -t fastapi "cd /fastapi-book-project && source venv/bin/activate && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4" C -m
           EOF
