@@ -44,4 +44,4 @@ jobs:
 
     - name: Deploy API
       run: |
-        ssh user@yourserver "cd /path/to/app && git pull && systemctl restart your-api-service"
+        ssh -i ~/.ssh/fastec2.pem ubuntu@ec2-51-20-56-48.eu-north-1.compute.amazonaws.com "cd /fastapi-book-project/ && git pull && systemctl restart nginx"
