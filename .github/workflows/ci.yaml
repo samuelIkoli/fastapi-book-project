@@ -8,12 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]  # Run on multiple OS
 
-    runs-on: ${{ matrix.os }} 
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
