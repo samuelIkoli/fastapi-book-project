@@ -121,7 +121,7 @@ python -m pytest tests
 ```
 
 ## Error Handling
-
+ 
 The API includes proper error handling for:
 
 - Non-existent books
