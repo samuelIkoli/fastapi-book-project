@@ -59,7 +59,6 @@ jobs:
             git pull origin main || { echo "git pull failed"; exit 1; }
             echo "Installing requirements..."
             source venv/bin/activate
-            git pull origin main
             pip install -r requirements.txt
             sudo systemctl restart fastapi_app
             sudo systemctl restart nginx
