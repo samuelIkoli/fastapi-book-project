@@ -48,10 +48,11 @@ jobs:
           USER: ubuntu
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST << 'EOF'
-          cd /fastapi-book-project
-          git pull origin main
-          source venv/bin/activate
-          pip install -r requirements.txt
-          sudo systemctl restart fastapi_app
+            ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST << 'EOF'
+            cd /fastapi-book-project
+            git pull origin main
+            source venv/bin/activate
+            pip install -r requirements.txt
+            sudo systemctl restart fastapi_app
+            sudo systemctl restart nginx
           EOF
