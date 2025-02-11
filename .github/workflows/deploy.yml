@@ -42,15 +42,16 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd /fastapi-book-project
-            git pull origin main
-            source venv/bin/activate
-            pip install -r requirements.txt
-            tmux kill-session -t fastapi || true
-            tmux new -d -s fastapi "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          HOST: ${{ secrets.EC2_HOST }}
+          USER: ubuntu
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST << 'EOF'
+          cd /fastapi-book-project
+          git pull origin main
+          source venv/bin/activate
+          pip install -r requirements.txt
+          tmux kill-session -t fastapi || true
+          tmux new -d -s fastapi "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
