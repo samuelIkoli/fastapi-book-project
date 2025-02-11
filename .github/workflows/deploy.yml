@@ -54,5 +54,5 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
           tmux has-session -t fastapi 2>/dev/null && tmux kill-session -t fastapi || true
-          tmux new -d -s fastapi bash -c 'source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4'
+          tmux new -d -s fastapi "source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4"
           EOF
