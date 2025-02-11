@@ -25,7 +25,7 @@ db.books = {
     ),
     3: Book(
         id=3,
-        title="The Return of the Kingies",
+        title="The Return of the King",
         author="J.R.R. Tolkien",
         publication_year=1955,
         genre=Genre.FANTASY,
