@@ -50,7 +50,14 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
             ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST << 'EOF'
             cd /fastapi-book-project
-            git pull origin main
+            echo "Current directory: $(pwd)"
+            echo "Git remote configuration:"
+            git remote -v
+            echo "Fetching updates..."
+            git fetch origin
+            echo "Pulling from main branch..."
+            git pull origin main || { echo "git pull failed"; exit 1; }
+            echo "Installing requirements..."
             source venv/bin/activate
             git pull origin main
             pip install -r requirements.txt
