@@ -126,7 +126,7 @@ The API includes proper error handling for:
 
 - Non-existent books
 - Invalid book IDs
-- Invalid genre types
+- Invalid genre types 
 - Malformed requests
 
 ## Contributing 
