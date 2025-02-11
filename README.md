@@ -129,7 +129,7 @@ The API includes proper error handling for:
 - Invalid genre types
 - Malformed requests
 
-## Contributing
+## Contributing 
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
