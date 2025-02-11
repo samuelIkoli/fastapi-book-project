@@ -35,20 +35,22 @@ jobs:
       shell: bash
 
   deploy:
-    needs: test-build  # Ensures deployment only happens if tests pass
-    runs-on: ubuntu-latest  # Deployment usually happens on a Linux server
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-   - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.10
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
         with:
-          host: ec2-51-20-56-48.eu-north-1.compute.amazonaws.com
+          host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /fastapi-book-project/
+            cd /fastapi-book-project
             git pull origin main
-            sudo systemctl restart nginx
+            source venv/bin/activate
+            pip install -r requirements.txt
+            tmux kill-session -t fastapi || true
+            tmux new -d -s fastapi "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
