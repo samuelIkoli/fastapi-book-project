@@ -1,0 +1,71 @@
+{
+    "data": {
+      "date": {
+        "created_at": "2025-02-17",
+        "updated_at": "2025-02-17"
+      },
+      "descriptions": {
+        "app_name": "Samex",
+        "app_description": "trial",
+        "app_logo": "https://my-portfolio-343207.web.app/MyLogo4.png",
+        "app_url": "http://13.61.150.175",
+        "background_color": "#fff"
+      },
+      "is_active": true,
+      "integration_type": "modifier",
+      "key_features": [
+        "real time notifications"
+      ],
+      "author": "Samuel Ikoli",
+      "settings": [
+        {
+          "label": "slack-channel",
+          "type": "text",
+          "required": true,
+          "default": "#Samex-Alerts"
+        },
+        {
+          "label": "Time interval",
+          "type": "dropdown",
+          "required": true,
+          "default": "Immediate",
+          "options": [
+            "Immediate",
+            "Every 5 minutes",
+            "Every 30 minutes",
+            "Every 1 hour"
+          ]
+        },
+        {
+          "label": "event type",
+          "type": "dropdown",
+          "required": true,
+          "default": "ci_pipeline",
+          "options": [
+            "ci_pipeline",
+            "cd_pipeline",
+            "deployment",
+            "error"
+          ]
+        },
+        {
+          "label": "message",
+          "type": "text",
+          "required": true,
+          "default": "Basic",
+          "options": [
+            "Basic",
+            ""
+          ]
+        },
+        {
+          "label": "include log",
+          "type": "checkbox",
+          "required": true,
+          "default": "true"
+        }
+      ],
+      "target_url": "https://hooks.slack.com/services/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",
+      "tick_url": "http://13.61.150.175/telex-webhook"
+    }
+  }

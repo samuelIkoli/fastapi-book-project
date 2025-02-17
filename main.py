@@ -1,5 +1,7 @@
+import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from api.router import api_router
 from core.config import settings
@@ -25,3 +27,9 @@ async def health_check():
 @app.get("/stage2")
 async def stage2():
     return {"message": "welcome to stage 2"}
+
+@app.get("/telex-webhook")
+async def get_json():
+    with open("telex.json", "r") as json_file:
+        data = json.load(json_file)
+    return JSONResponse(content=data)
