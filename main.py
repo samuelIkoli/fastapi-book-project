@@ -28,8 +28,8 @@ async def health_check():
 async def stage2():
     return {"message": "welcome to stage 2"}
 
-# @app.get("/telex-webhook")
-# async def get_json():
-#     with open("telex.json", "r") as json_file:
-#         data = json.load(json_file)
-#     return JSONResponse(content=data)
+@app.get("/telex-webhook")
+async def get_json():
+    with open("telex.json", "r") as json_file:
+        data = json.load(json_file)
+    return JSONResponse(content=data)
