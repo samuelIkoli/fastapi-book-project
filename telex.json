@@ -13,6 +13,7 @@
       },
       "is_active": true,
       "integration_type": "modifier",
+      "integration_category": "Monitoring & Logging",
       "key_features": [
         "Real time notifications"
       ],
