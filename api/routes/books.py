@@ -48,6 +48,12 @@ async def get_books() -> OrderedDict[int, Book]:
     return db.get_books()
 
 @router.get(
+    "/esiri", response_model=OrderedDict[int, Book], status_code=status.HTTP_200_OK
+)
+async def esiri() -> OrderedDict[int, Book]:
+    return JSONResponse(status_code=404, content={"detail": "ESIRI Mercy COMMISION and her Nassarawa BF"})
+
+@router.get(
     "/{book_id}", response_model=Book, status_code=status.HTTP_200_OK
 )
 async def get_book(book_id: int) -> OrderedDict[int, Book]:
