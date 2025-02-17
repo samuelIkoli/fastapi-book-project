@@ -31,7 +31,6 @@
           ]
         }
       ],
-      "target_url": "https://hooks.slack.com/services/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",
-      "tick_url": "http://13.48.130.169/telex-webhook"
+      "target_url": "https://hooks.slack.com/services/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"
     }
   }
