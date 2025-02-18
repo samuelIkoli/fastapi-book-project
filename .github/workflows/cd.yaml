@@ -36,3 +36,23 @@ jobs:
             sudo systemctl restart fastapi_app
             sudo systemctl restart nginx
           EOF
+
+      - name: Notify Telex - Deployment Successful
+        if: success()
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "event_name": "cd_pipeline",
+            "username": "GitHub Actions",
+            "status": "success",
+            "message": "✅ Deployment successful for commit ${{ github.sha }}."
+          }' "https://ping.telex.im/v1/webhooks/01950b90-b1bf-75b7-b9e6-e831fdd18b5f"
+
+      - name: Notify Telex - Deployment Failed
+        if: failure()
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "event_name": "cd_pipeline",
+            "username": "GitHub Actions",
+            "status": "failure",
+            "message": "❌ Deployment failed for commit ${{ github.sha }}."
+          }' "https://ping.telex.im/v1/webhooks/01950b90-b1bf-75b7-b9e6-e831fdd18b5f"    
