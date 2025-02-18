@@ -5,7 +5,7 @@
         "updated_at": "2025-02-17"
       },
       "descriptions": {
-        "app_name": "Samex",
+        "app_name": "SamexPI",
         "app_description": "Trial for notifications",
         "app_logo": "https://my-portfolio-343207.web.app/MyLogo4.png",
         "app_url": "http://13.48.130.169",
@@ -19,19 +19,34 @@
       ],
       "author": "Samuel Ikoli",
       "settings": [
-        {
-          "label": "Time interval",
-          "type": "dropdown",
-          "required": true,
-          "default": "Immediate",
-          "options": [
-            "Immediate",
-            "Every 5 minutes",
-            "Every 10 minutes",
-            "Every 30 minutes"
-          ]
-        }
-      ],
+            {
+                "label": "slack-channel",
+                "type": "text",
+                "required": true,
+                "default": "#DevopsAlert"
+            },
+            {
+                "label": "time interval",
+                "type": "dropdown",
+                "required": true,
+                "default": "immediate",
+                "options": ["immediate", "Every 5-min", "Every 10-min", "Every 1-hour"]
+            },
+            {
+                "label": "event type",
+                "type": "dropdown",
+                "required": true,
+                "default": "ci_pipeline",
+                "options": ["ci_pipeline", "cd_pipeline", "deployment", "error"]
+            },
+            {"label": "message", "type": "text", "required": true, "default": "Basic"},
+            {
+                "label": "include logs",
+                "type": "checkbox",
+                "required": true,
+                "default": "true"
+            }
+        ],
       "target_url": "https://hooks.slack.com/services/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"
     }
   }
